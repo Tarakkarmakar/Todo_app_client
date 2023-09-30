@@ -19,7 +19,7 @@ const TodoPage= () => {
     const dispatch = useDispatch();
     const todos = useSelector((state) => state.todo.todos);
     const [newTodoText, setNewTodoText] = useState('');
-  
+  const toaster=useToast()
     useEffect(() => {
      
       dispatch(fetchTodos());
@@ -31,14 +31,24 @@ const TodoPage= () => {
       if (newTodoText.trim() !== '') {
         dispatch(addTodo({ title: newTodoText, description: '', completed: false }));
         setNewTodoText('');
+
+        
+      toaster({
+        title: `Your Todo Have added`,
+        duration: 2000,
+        position: "top",
+        status: "success",
+        isClosable: true,
+      });
       }
+
+
     };
 
   const handleDeleteTodo = (todoId) => {
     dispatch(deleteTodo(todoId));
 
   };
-
 
 
 console.log(todos)

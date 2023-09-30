@@ -14,6 +14,10 @@ const TodoItem = ({ todo, onEdit, onDelete, onComplete }) => {
   const handleDelete = () => {
    onDelete()
   };
+  const trimmedTitle =
+  todo.title.length > 15
+    ? `${todo.title.slice(0, 15)}...`
+    : todo.title;
 
 
   return (
@@ -36,7 +40,7 @@ const TodoItem = ({ todo, onEdit, onDelete, onComplete }) => {
         marginRight="10px"
         onClick={onComplete}
       ></Button>
-      <Text color="black">{todo.title}</Text>
+      <Text color="black">{trimmedTitle}</Text>
       <Button onClick={handleEdit} marginRight="5px" color="black">
         Edit
       </Button>
